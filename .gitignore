@@ -252,7 +252,7 @@ paket-files/
 *.sln.iml
 
 # Visual Studio Code
-.vscode/
-.node_modules/
-.bower_components/
-.typings/
+vscode/
+node_modules/
+bower_components/
+typings/
