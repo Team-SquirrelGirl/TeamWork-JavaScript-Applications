@@ -1,4 +1,6 @@
 const templateLoader = (() => {
+    'use strict';
+
     const cache = {};
 
     function get(templateName) {
