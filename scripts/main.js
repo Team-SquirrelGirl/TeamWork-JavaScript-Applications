@@ -4,6 +4,8 @@ import { router } from 'routing';
 import { updateUI } from 'updateUI';
 
 $(() => {
+    'use strict';
+
     const root = $('#root'),
         navbar = root.find('nav.navbar'),
         contentContainer = root.find('#content');

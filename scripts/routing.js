@@ -13,8 +13,11 @@ let router = (() => {
 
         navigo
             .on('/pokemons/:name', (params) => {
-                Promise.all([data.getPokemon(params.name), templates.get('pokemon-info')])
-                    .then(([data, template]) => { console.log(data); contentContainer.html(template(data)); })
+                Promise.all([data.getPokemon(params.name), templates.get('pokemons'), templates.get('pokemon-info')])
+                    .then(([data, pokemonsTemplate, pokemonInfoTemplate]) => {
+                        console.log(data);
+                        contentContainer.html(pokemonsTemplate() + pokemonInfoTemplate(data));
+                    })
                     .catch((error) => {
                         if (error.status = 404) {
                             updateUI.showMsg('Pokemon not found!', 'alert-danger');
@@ -30,8 +33,11 @@ let router = (() => {
                     .catch(console.log);
             })
             .on('/items/:name', (params) => {
-                Promise.all([data.getItem(params.name), templates.get('item-info')])
-                    .then(([data, template]) => { console.log(data); contentContainer.html(template(data)); })
+                Promise.all([data.getItem(params.name), templates.get('items'), templates.get('item-info')])
+                    .then(([data, itemsTemplate, itemInfoTemplate]) => {
+                        console.log(data);
+                        contentContainer.html(itemsTemplate() + itemInfoTemplate(data));
+                    })
                     .catch((error) => {
                         if (error.status = 404) {
                             updateUI.showMsg('Item not found!', 'alert-danger');
@@ -47,8 +53,10 @@ let router = (() => {
                     .catch(console.log);
             })
             .on(() => {
+                Promise.resolve(templates.get('home'))
+                    .then((template) => contentContainer.html(template()))
+                    .catch(console.log);
                 navigo.navigate('');
-                $('#content').html('');
                 $('#root nav').find('li').removeClass('active');
             })
             .resolve();
