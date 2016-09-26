@@ -7,6 +7,7 @@ SystemJS.config({
   'routing': './scripts/routing.js',
   'template-loader': './scripts/template-loader.js',
   'data': './scripts/data.js',
-  'updateUI': './scripts/updateUI.js'
+  'updateUI': './scripts/updateUI.js',
+  'controllers': './scripts/controllers.js'
  }
 });

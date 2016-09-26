@@ -1,7 +1,6 @@
-/* globals $, Navigo */
+/* globals Navigo */
 
-import { templateLoader as templates } from 'template-loader';
-import { data } from 'data';
+import { controllers } from 'controllers';
 import { updateUI } from 'updateUI';
 
 let router = (() => {
@@ -10,16 +9,13 @@ let router = (() => {
     let navigo;
 
     function init() {
-        let contentContainer = $('#root #content');
-        navigo = new Navigo(null, false);
+        navigo = new Navigo(null, true);
 
         navigo
             .on('/pokemons/:name', (params) => {
-                Promise.all([data.getPokemon(params.name), templates.get('pokemons'), templates.get('pokemon-info')])
-                    .then(([data, pokemonsTemplate, pokemonInfoTemplate]) => {
-                        console.log(data);
-                        contentContainer.html(pokemonsTemplate() + pokemonInfoTemplate(data));
-                    })
+                controllers.pokemons();
+                controllers
+                    .pokemon(params.name)
                     .catch((error) => {
                         if (error.status === 404) {
                             updateUI.showMsg('Pokemon not found!', 'alert-danger');
@@ -28,21 +24,14 @@ let router = (() => {
                             console.log(error);
                         }
                     });
-
-                updateUI.navbar('pokemons');
             })
             .on('/pokemons', () => {
-                Promise.resolve(templates.get('pokemons'))
-                    .then((template) => contentContainer.html(template()))
-                    .catch(console.log);
-                updateUI.navbar('pokemons');
+                controllers.pokemons();
             })
             .on('/items/:name', (params) => {
-                Promise.all([data.getItem(params.name), templates.get('items'), templates.get('item-info')])
-                    .then(([data, itemsTemplate, itemInfoTemplate]) => {
-                        console.log(data);
-                        contentContainer.html(itemsTemplate() + itemInfoTemplate(data));
-                    })
+                controllers.items();
+                controllers
+                    .item(params.name)
                     .catch((error) => {
                         if (error.status === 404) {
                             updateUI.showMsg('Item not found!', 'alert-danger');
@@ -51,25 +40,15 @@ let router = (() => {
                             console.log(error);
                         }
                     });
-
-                updateUI.navbar('items');
             })
             .on('/items', () => {
-                Promise.resolve(templates.get('items'))
-                    .then((template) => contentContainer.html(template()))
-                    .catch(console.log);
-
-                updateUI.navbar('items');
+                controllers.items();
             })
             .on('/home', () => {
-                Promise.resolve(templates.get('home'))
-                    .then((template) => contentContainer.html(template()))
-                    .catch(console.log);
-
-                updateUI.navbar();
+                controllers.home();
             })
             .on(() => {
-                navigo.navigate('#/home');
+                navigo.navigate('/home');
             })
             .resolve();
 
