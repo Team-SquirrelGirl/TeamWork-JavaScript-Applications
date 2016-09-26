@@ -14,7 +14,7 @@ $(() => {
         if (name !== null && name !== undefined) {
             name = name.replace(/\s+/g, '').toLowerCase();
             if (name !== "") {
-                navigo.navigate(`#/pokemons/${name}`);
+                navigo.navigate(`/pokemons/${name}`);
             } else {
                 updateUI.showMsg('Invalid pokemon name!', 'alert-danger');
             }
@@ -28,7 +28,7 @@ $(() => {
         if (name !== null && name !== undefined) {
             name = name.replace(/\s+/g, '').toLowerCase();
             if (name !== "") {
-                navigo.navigate(`#/items/${name}`);
+                navigo.navigate(`/items/${name}`);
             } else {
                 updateUI.showMsg('Invalid item name!', 'alert-danger');
             }
