@@ -28,11 +28,14 @@ let router = (() => {
                             console.log(error);
                         }
                     });
+
+                updateUI.navbar('pokemons');
             })
             .on('/pokemons', () => {
                 Promise.resolve(templates.get('pokemons'))
                     .then((template) => contentContainer.html(template()))
                     .catch(console.log);
+                updateUI.navbar('pokemons');
             })
             .on('/items/:name', (params) => {
                 Promise.all([data.getItem(params.name), templates.get('items'), templates.get('item-info')])
@@ -48,18 +51,25 @@ let router = (() => {
                             console.log(error);
                         }
                     });
+
+                updateUI.navbar('items');
             })
             .on('/items', () => {
                 Promise.resolve(templates.get('items'))
                     .then((template) => contentContainer.html(template()))
                     .catch(console.log);
+
+                updateUI.navbar('items');
             })
-            .on(() => {
+            .on('/home', () => {
                 Promise.resolve(templates.get('home'))
                     .then((template) => contentContainer.html(template()))
                     .catch(console.log);
-                navigo.navigate('');
-                $('#root nav').find('li').removeClass('active');
+
+                updateUI.navbar();
+            })
+            .on(() => {
+                navigo.navigate('#/home');
             })
             .resolve();
 

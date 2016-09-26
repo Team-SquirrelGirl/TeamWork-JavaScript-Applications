@@ -1,3 +1,5 @@
+/* globals $ */
+
 let updateUI = (() => {
     let root = $('#root'),
         alertTemplate = $($('#alert-template').text());
@@ -12,8 +14,17 @@ let updateUI = (() => {
         }, delay || 3000);
     }
 
+    function navbar(activeButton) {
+        $('#root nav').find('li').removeClass('active');
+        if (activeButton) {
+            activeButton = `#btn-${activeButton}`;
+            $(activeButton).parents('li').addClass('active');
+        }
+    }
+
     return {
-        showMsg
+        showMsg,
+        navbar
     };
 })();
 
