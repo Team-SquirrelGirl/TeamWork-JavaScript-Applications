@@ -1,3 +1,5 @@
+/* globals $, Navigo */
+
 import { templateLoader as templates } from 'template-loader';
 import { data } from 'data';
 import { updateUI } from 'updateUI';
@@ -19,7 +21,7 @@ let router = (() => {
                         contentContainer.html(pokemonsTemplate() + pokemonInfoTemplate(data));
                     })
                     .catch((error) => {
-                        if (error.status = 404) {
+                        if (error.status === 404) {
                             updateUI.showMsg('Pokemon not found!', 'alert-danger');
                             navigo.navigate('/pokemons');
                         } else {
@@ -39,7 +41,7 @@ let router = (() => {
                         contentContainer.html(itemsTemplate() + itemInfoTemplate(data));
                     })
                     .catch((error) => {
-                        if (error.status = 404) {
+                        if (error.status === 404) {
                             updateUI.showMsg('Item not found!', 'alert-danger');
                             navigo.navigate('/items');
                         } else {
@@ -49,7 +51,7 @@ let router = (() => {
             })
             .on('/items', () => {
                 Promise.resolve(templates.get('items'))
-                    .then((template) => $('#content').html(template()))
+                    .then((template) => contentContainer.html(template()))
                     .catch(console.log);
             })
             .on(() => {
