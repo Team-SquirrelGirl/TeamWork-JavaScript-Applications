@@ -8,6 +8,7 @@ SystemJS.config({
   'template-loader': './scripts/template-loader.js',
   'data': './scripts/data.js',
   'updateUI': './scripts/updateUI.js',
-  'controllers': './scripts/controllers.js'
+  'controllers': './scripts/controllers.js',
+  'fb-authentication': './scripts/fb-authentication.js'
  }
 });
