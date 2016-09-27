@@ -1,2 +1,14 @@
-<!--TODO: TEMPLATE FOR POKEMON INFO-->
-<!--(CURRENTLY LOGGING IN CONSOLE)-->
+<h1>Pokedex!</h1>
+<ul class="list list-cookies">
+    <li data-id="{{id}}">
+        <h3>{{name}}</h3>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{id}}.png">
+        <span>Height: <strong>{{height}}</strong></span>
+        <span>Weight: <strong>{{weight}}</strong></span>
+      {{#each types}}
+        <span>Type: <strong>{{type.name}}</strong></span>
+        {{/each}}
+        <br />
+        <br />
+    </li>
+</ul>
