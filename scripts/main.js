@@ -6,11 +6,9 @@ import { fbAuthentication } from 'fb-authentication';
 
 $(() => {
     'use strict';
-
     const contentContainer = $('#root #content'),
         navigo = router.init();
     fbAuthentication.init();
-
     $('#btn-fb').on('click', () => fbAuthentication.runFbSdk());
 
     contentContainer.on('click', '#btn-pokemon-search', (ev) => {
