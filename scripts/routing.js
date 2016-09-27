@@ -27,6 +27,12 @@ let router = (() => {
             })
             .on('/pokemons', () => {
                 controllers.pokemons();
+
+                $.get('../pokemons.txt', function(txtFile) {
+                    var pokeauto = txtFile.split("\n");
+                    $('#input-pokemon-search').autocomplete({ source: pokeauto });
+                });
+
             })
             .on('/items/:name', (params) => {
                 controllers.items();
