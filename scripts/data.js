@@ -3,7 +3,7 @@
 let data = (() => {
     function getPokemon(name) {
         return new Promise((resolve, reject) => {
-            $.getJSON(`http://pokeapi.co/api/v2/pokemon/${name}`)
+            $.getJSON(`http://pokeapi.co/api/v2/pokemon/${name}/`)
                 .done(resolve)
                 .fail(reject);
         });
@@ -11,7 +11,7 @@ let data = (() => {
 
     function getItem(name) {
         return new Promise((resolve, reject) => {
-            $.getJSON(`http://pokeapi.co/api/v2/item/${name}`)
+            $.getJSON(`http://pokeapi.co/api/v2/item/${name}/`)
                 .done(resolve)
                 .fail(reject);
         });
