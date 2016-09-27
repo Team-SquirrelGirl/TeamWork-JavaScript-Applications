@@ -8,18 +8,18 @@ let controllers = (() => {
     let contentContainer = $('#root #content');
 
     function home() {
+        updateUI.navbar();
         return Promise.resolve(templates.get('home'))
             .then((template) => {
-                updateUI.navbar();
                 contentContainer.html(template());
             })
             .catch(console.log);
     }
 
     function pokemons() {
+        updateUI.navbar('pokemons');
         return Promise.resolve(templates.get('pokemons'))
             .then((template) => {
-                updateUI.navbar('pokemons');
                 contentContainer.html(template());
             })
             .catch(console.log);
@@ -28,16 +28,15 @@ let controllers = (() => {
     function pokemon(name) {
         return Promise.all([data.getPokemon(name), templates.get('pokemon-info')])
             .then(([data, pokemonInfoTemplate]) => {
-                updateUI.navbar('pokemons');
                 console.log(data);
                 contentContainer.append(pokemonInfoTemplate(data));
             });
     }
 
     function items() {
+        updateUI.navbar('items');
         return Promise.resolve(templates.get('items'))
             .then((template) => {
-                updateUI.navbar('items');
                 contentContainer.html(template());
             })
             .catch(console.log);
@@ -46,7 +45,6 @@ let controllers = (() => {
     function item(name) {
         return Promise.all([data.getItem(name), templates.get('item-info')])
             .then(([data, itemInfoTemplate]) => {
-                updateUI.navbar('items');
                 console.log(data);
                 contentContainer.append(itemInfoTemplate(data));
             });
