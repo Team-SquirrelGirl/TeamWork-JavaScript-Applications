@@ -1,7 +1,6 @@
 /* globals Navigo */
 
 import { controllers } from 'controllers';
-import { updateUI } from 'updateUI';
 
 let router = (() => {
     'use strict';
@@ -16,14 +15,7 @@ let router = (() => {
                 controllers.pokemons();
                 controllers
                     .pokemon(params.name)
-                    .catch((error) => {
-                        if (error.status === 404) {
-                            updateUI.showMsg('Pokemon not found!', 'alert-danger');
-                            navigo.navigate('/pokemons');
-                        } else {
-                            console.log(error);
-                        }
-                    });
+                    .catch(console.log);
             })
             .on('/pokemons', () => {
                 controllers.pokemons();
@@ -32,14 +24,7 @@ let router = (() => {
                 controllers.items();
                 controllers
                     .item(params.name)
-                    .catch((error) => {
-                        if (error.status === 404) {
-                            updateUI.showMsg('Item not found!', 'alert-danger');
-                            navigo.navigate('/items');
-                        } else {
-                            console.log(error);
-                        }
-                    });
+                    .catch(console.log);
             })
             .on('/items', () => {
                 controllers.items();
