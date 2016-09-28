@@ -1,5 +1,6 @@
 <h1>Pokedex!</h1>
 <ul class="list list-cookies">
+  {{#each this}}
     <li data-id="{{id}}">
         <h3>{{name}}</h3>
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{id}}.png">
@@ -11,4 +12,5 @@
         <br />
         <br />
     </li>
+    {{/each}}
 </ul>

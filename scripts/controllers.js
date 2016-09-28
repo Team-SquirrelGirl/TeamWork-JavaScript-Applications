@@ -62,8 +62,16 @@ let controllers = (() => {
     function pokemon(name) {
         return Promise.all([data.getPokemon(name), templates.get('pokemon-info')])
             .then(([data, pokemonInfoTemplate]) => {
-                console.log(data);
-                contentContainer.append(pokemonInfoTemplate(data));
+                //console.log(data);
+                sessionStorage.setItem(data.name, JSON.stringify(data));
+                console.log(sessionStorage.length);
+
+                let tempPokemons = [];
+                //console.log(JSON.parse(sessionStorage.getItem(sessionStorage.key(0))));
+                for (var i = 0; i < sessionStorage.length; i += 1) {
+                    tempPokemons.push(JSON.parse(sessionStorage.getItem(sessionStorage.key(i))));
+                }
+                contentContainer.append(pokemonInfoTemplate(tempPokemons));
             });
     }
 
