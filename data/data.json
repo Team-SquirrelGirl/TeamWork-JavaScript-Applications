@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "username": "Thomas",
+      "passHash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "usernameToLower": "thomas",
+      "id": "16655985-e510-43d4-ad1c-2388c76d1ef6",
+      "authKey": "16655985-e510-43d4-ad1c-2388c76d1ef6FwHCPd*bP:.;Fu&:evl)RPGg"
+    },
+    {
+      "username": "Jamie",
+      "passHash": "1234567890123456789012345678901234567890",
+      "usernameToLower": "jamie",
+      "id": "bd04b3b8-5586-47ad-bf8f-db6c531dbb73",
+      "authKey": "bd04b3b8-5586-47ad-bf8f-db6c531dbb73erxSIAJyVOzIEIrpMFbanscO"
+    },
+    {
+      "username": "John",
+      "passHash": "123456q",
+      "usernameToLower": "john",
+      "id": "14f0886a-26b3-45a1-98de-bce9fde7688c",
+      "authKey": "14f0886a-26b3-45a1-98de-bce9fde7688cSnNBFpiKDqKddNolABLHzyCM"
+    },
+    {
+      "username": "Yovko",
+      "passHash": "12345",
+      "usernameToLower": "yovko",
+      "id": "d878afa0-1a1d-4fcb-83bf-31b0d7d95583",
+      "authKey": "d878afa0-1a1d-4fcb-83bf-31b0d7d95583CAdlEXTaHhtVPZdHLFjfEymR"
+    }
+  ],
+  "pokemons": [
+    {
+      "name": "pikachu",
+      "type": "electric ",
+      "userId": "16655985-e510-43d4-ad1c-2388c76d1ef6",
+      "height": 4,
+      "weight": 60,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+    },
+    {
+      "name": "butterfree",
+      "type": "flying",
+      "userId": "bd04b3b8-5586-47ad-bf8f-db6c531dbb73",
+      "height": 11,
+      "weight": 320,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png"
+    },
+    {
+      "name": "wartortle!",
+      "type": "water ",
+      "userId": "14f0886a-26b3-45a1-98de-bce9fde7688c",
+      "height": 10,
+      "weight": 225,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png"
+    }
+  ]
+}
