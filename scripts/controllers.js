@@ -18,6 +18,12 @@ let controllers = (() => {
 
     function pokemons() {
         updateUI.navbar('pokemons');
+
+        $.get('../pokemons.txt', function(txtFile) {
+            var pokeauto = txtFile.split("\n");
+            $('#input-pokemon-search').autocomplete({ source: pokeauto });
+        });
+
         return Promise.resolve(templates.get('pokemons'))
             .then((template) => {
                 contentContainer.html(template());
