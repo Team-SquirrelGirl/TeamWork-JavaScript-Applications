@@ -43,5 +43,5 @@ module.exports = function(db) {
         });
     }
 
-    return {get };
+    return { get };
 };

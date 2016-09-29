@@ -85,5 +85,5 @@ module.exports = function(db) {
         });
     }
 
-    return {get, post, put };
+    return { get, post, put };
 };

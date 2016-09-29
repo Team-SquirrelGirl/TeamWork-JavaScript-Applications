@@ -1,19 +1,15 @@
 {
   "name": "teamwork",
   "version": "1.0.0",
-  "description": "simple SPA",
-  "main": "index.html",
+  "description": "simple SPA server",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
   "author": "me",
   "license": "ISC",
   "dependencies": {
-    "handlebars": "^4.0.5",
-    "navigo": "^3.0.0",
-    "systemjs": "^0.19.38",
-    "systemjs-plugin-babel": "0.0.15",
-	"body-parser": "^1.13.3",
+	  "body-parser": "^1.13.3",
     "cors": "^2.8.1",
     "express": "^4.13.3",
     "lodash": "^3.10.1",

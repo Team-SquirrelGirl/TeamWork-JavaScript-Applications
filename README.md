@@ -3,7 +3,7 @@
 Telerik Academy by Progress
 JavaScript Applications Season 2016
 
-[Discription](https://github.com/TelerikAcademy/JavaScript-Applications/blob/master/Teamwork/README.md)
+[Description](https://github.com/TelerikAcademy/JavaScript-Applications/blob/master/Teamwork/README.md)
 
 # Team - "Squirrel Girl" Members (Alphabetically)
 

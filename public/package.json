@@ -1,0 +1,14 @@
+{
+  "name": "teamwork",
+  "version": "1.0.0",
+  "description": "simple SPA",
+  "main": "index.html",
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "navigo": "^3.0.0",
+    "systemjs": "^0.19.38",
+    "systemjs-plugin-babel": "0.0.15"
+  }
+}

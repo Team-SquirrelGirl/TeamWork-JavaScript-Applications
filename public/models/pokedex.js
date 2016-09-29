@@ -1,6 +1,6 @@
 import { Validator } from './Validator.js';
 
-export class Pokedex() {
+export class Pokedex {
     constructor() {
         pokemons = []
     }
