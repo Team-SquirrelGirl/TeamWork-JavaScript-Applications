@@ -1,3 +1,5 @@
+import { Pokedex } from './pokedex.js';
+
 export class User {
     constructor(userName, password, firstName, lastName, email) {
         this.userNameProperty = userName;
@@ -5,6 +7,7 @@ export class User {
         this.firstNameProperty = firstName;
         this.lastNameProperty = lastName;
         this.emailProperty = email;
+        this.pokedex = new Pokedex();
         return this;
     }
 
