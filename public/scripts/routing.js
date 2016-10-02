@@ -18,7 +18,7 @@ let router = (() => {
                 $('#username-value').html('');
                 document.location = "#/home";
             })
-            .on('#/login', () => {
+            .on('/login', () => {
                 return Promise.all([templateLoader.get('login')])
                     .then(([template]) => {
                         $contentContainer.html(template);
