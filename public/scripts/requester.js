@@ -39,7 +39,6 @@ let requester = {
     postJSON(url, body, options = {}) {
         let promise = new Promise((resolve, reject) => {
             var headers = options.headers || {};
-            console.log(body);
             $.ajax({
                 url,
                 headers,

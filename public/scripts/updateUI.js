@@ -1,6 +1,4 @@
 /* globals $ */
-import {data} from './data.js'
-
 let updateUI = (() => {
     'use strict';
 
@@ -35,7 +33,6 @@ let updateUI = (() => {
 
         $('#register').removeClass('from-group');
         $('#register').addClass('from-group hidden');
-        $('#span-username').text(data.getCurrentUser());
 
     }
 

@@ -8,11 +8,6 @@
       "authKey": "7312f94f-5504-445e-be17-f3022205a628FvNwsbjOFeGdrBHahAWGCMaz"
     },
     {
-      "username": "TonyN",
-      "passHash": "123456",
-      "usernameToLower": "tonyn",
-      "id": "54ee4a59-8e5f-4e5e-a67e-8f8bf0b43120",
-      "authKey": "54ee4a59-8e5f-4e5e-a67e-8f8bf0b43120RSNFIpDiVuJJrSZoDLklnCAj",
       "username": "Thomas",
       "passHash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "usernameToLower": "thomas",
@@ -185,7 +180,27 @@
       "passHash": "asd",
       "usernameToLower": "asd",
       "id": "be2e8ab9-dc9b-4466-8a87-72aea77c691a"
->>>>>>> bb92c3ac4706b4c614fd74ae4be2b4493eefebfa
+    },
+    {
+      "username": "varvarv",
+      "passHash": "varvar",
+      "usernameToLower": "varvarv",
+      "id": "53922df1-6dc9-4ecc-a1ed-b8acc4a9d5cd",
+      "authKey": "53922df1-6dc9-4ecc-a1ed-b8acc4a9d5cdExUpwVLvcuXDmzLfFPmZFyKm"
+    },
+    {
+      "username": "123456",
+      "passHash": "123456",
+      "usernameToLower": "123456",
+      "id": "1e960576-8927-4c83-b583-37d02efad370",
+      "authKey": "1e960576-8927-4c83-b583-37d02efad370yISXIpmwEwOjMPeGslAAiskt"
+    },
+    {
+      "username": "varvarvar",
+      "passHash": "123",
+      "usernameToLower": "varvarvar",
+      "id": "80944f4d-f8aa-4f83-8f46-03a59f881582",
+      "authKey": "80944f4d-f8aa-4f83-8f46-03a59f881582pGcuCfioBoOFkNpqrLlxqEUR"
     }
   ],
   "pokemons": [

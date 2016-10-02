@@ -1,7 +1,6 @@
 /* globals $, Handlebars*/
 
 import { templateLoader } from 'template-loader';
-import { data } from 'data';
 import { updateUI } from 'updateUI';
 import { requester } from 'requester';
 
@@ -24,51 +23,7 @@ let controllers = (() => {
     }
 
     function logout() {
-<<<<<<< HEAD
         localStorage.clear();
-=======
-        console.log(data.getCurrentUser());
-        return new Promise((resolve, reject) => {
-            resolve(data.logout());
-        })
-            .then(updateUI.navBarLogout());
->>>>>>> bb92c3ac4706b4c614fd74ae4be2b4493eefebfa
-    }
-
-
-    function findNameFromData(name, type) {
-        return new Promise((resolve, reject) => {
-            let isFound = false,
-                namesToSearchFrom = data.names[type];
-
-            for (let i = 0, len = namesToSearchFrom.length; i < len; i += 1) {
-                if (name === namesToSearchFrom[i].toLowerCase()) {
-                    isFound = true;
-                }
-            }
-
-            resolve(isFound);
-        });
-    }
-
-    function respondToSearch(name, type, navigo) {
-        if (name !== null && name !== undefined && typeof name === 'string') {
-            name = name.replace(/\s+/g, '').toLowerCase();
-            if (name.length >= 3) {
-                findNameFromData(name, type)
-                    .then((isFound) => {
-                        if (isFound) {
-                            navigo.navigate(`/${type}s/${name}`);
-                        } else {
-                            updateUI.showMsg(`Invalid ${type} name!`, 'alert-danger');
-                        }
-                    });
-            } else {
-                updateUI.showMsg(`Invalid ${type} name!`, 'alert-danger');
-            }
-        } else {
-            updateUI.showMsg(`Invalid ${type} name!`, 'alert-danger');
-        }
     }
 
     function home() {
@@ -122,61 +77,6 @@ let controllers = (() => {
             });
     }
 
-    function login() {
-        data.isLoggedIn()
-            .then(isLoggedIn => {
-                if (isLoggedIn) {
-                    //redirect to
-                    window.location = "#/home";
-                    return;
-                }
-
-                templates.get("login")
-                    .then((templateHtml) => {
-
-                        let templateFunc = Handlebars.compile(templateHtml);
-                        let html = templateFunc();
-                        $("#container").html(html);
-
-                        $("#btn-login").on("click", (ev) => {
-                            let user = {
-                                username: 'John', //$("#tb-username").val(),
-                                passHash: '123456q' //$("#tb-password").val()
-                            };
-
-                            data.login(user)
-                                .then((respUser) => {
-                                    //123456q
-                                    $(document.body).addClass("logged-in");
-                                    document.location = "#/home";
-                                });;
-
-                            ev.preventDefault();
-                            return false;
-                        });
-
-                        $("#btn-register").on("click", (ev) => {
-                            let user = {
-                                username: $("#tb-username").val(),
-                                passHash: $("#tb-password").val()
-                            };
-
-                            data.register(user)
-                                .then((respUser) => {
-                                    return data.login(user);
-                                })
-                                .then((respUser) => {
-                                    //123456q
-                                    $(document.body).addClass("logged-in");
-                                    document.location = "#/home";
-                                });
-                            ev.preventDefault();
-                            return false;
-                        });
-
-                    });
-            });
-    }
 
     return {
         home,
@@ -184,14 +84,9 @@ let controllers = (() => {
         pokemon,
         items,
         item,
-        respondToSearch,
-<<<<<<< Updated upstream
         login,
         register,
-        logout
-=======
-        login
->>>>>>> Stashed changes
+        logout,
     };
 })();
 

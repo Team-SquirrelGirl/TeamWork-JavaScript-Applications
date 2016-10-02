@@ -13,30 +13,34 @@ let router = (() => {
         navigo = new Navigo(null, true);
 
         navigo
-            .on('/logout', () => {
+            .on('#/logout', () => {
                 controllers.logout();
+                $('#username-value').html('');
+                document.location = "#/home";
             })
-            .on('#/login', (user) => {
+            .on('#/login', () => {
                 return Promise.all([templateLoader.get('login')])
                     .then(([template]) => {
                         $contentContainer.html(template);
+                        console.log('vliza');
                     })
                     .then(function() {
                         $('#btn-login').on('click', function() {
-                            user = {
+                            let user = {
                                 username: $('#tb-username').val(),
                                 passHash: $('#tb-password').val()
                             }
+                            console.log(user);
                             controllers.login(user);
                             $('#username-value').html(user.username);
                             document.location = "#/home";
                         });
                         $('#btn-register').on('click', function() {
-                            user = {
+                            let user = {
                                 username: $('#tb-username').val(),
                                 passHash: $('#tb-password').val()
                             }
-
+                            console.log(user);
                             controllers.register(user);
                         })
                     })
