@@ -5,12 +5,6 @@
 let _ = require("lodash");
 
 module.exports = function(db) {
-    function getRandomPokemon() {
-        let pokemons = db("pokemons").value();
-        let index = Math.floor(Math.random() * pokemons.length);
-        return pokemons[index];
-    }
-
     function get(req, res) {
         let user = req.user;
         if (!user) {

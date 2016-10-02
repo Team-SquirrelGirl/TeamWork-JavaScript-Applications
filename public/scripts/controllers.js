@@ -23,14 +23,14 @@ let controllers = (() => {
         });
     }
 
-    function respondToSearch(name, type, navigo) {
+    function respondToSearch(name, type) {
         if (name !== null && name !== undefined && typeof name === 'string') {
             name = name.replace(/\s+/g, '').toLowerCase();
             if (name.length >= 3) {
                 findNameFromData(name, type)
                     .then((isFound) => {
                         if (isFound) {
-                            navigo.navigate(`/${type}s/${name}`);
+                            document.location = `#/${type}s/${name}`;
                         } else {
                             updateUI.showMsg(`Invalid ${type} name!`, 'alert-danger');
                         }
@@ -84,6 +84,7 @@ let controllers = (() => {
                                 $('#username-value').html('Hello, ' + user.username);
                                 $('#user-login').parent('li').addClass('hidden');
                                 $('#user-logout').parent('li').removeClass('hidden');
+                                $('#btn-pokedex').parent('li').removeClass('hidden');
                                 document.location = '#/home';
                             }
                         });
@@ -121,6 +122,7 @@ let controllers = (() => {
     function logout() {
         $('#username-value').html('');
         $('#user-logout').parent('li').addClass('hidden');
+        $('#btn-pokedex').parent('li').addClass('hidden');
         $('#user-login').parent('li').removeClass('hidden');
         localStorage.clear();
     }
@@ -134,36 +136,63 @@ let controllers = (() => {
 
     function pokemons() {
         updateUI.navbar('btn-pokemons');
+
         return Promise.all([templateLoader.get('pokemons'), data.getPokemonNames()])
             .then(([template, pokemonNames]) => {
                 contentContainer.html(template());
                 $('#input-pokemon-search').autocomplete({ source: pokemonNames });
+            })
+            .then(() => {
+                contentContainer.on('click', '#btn-pokemon-search', (ev) => {
+                    let name = $(ev.target).parents('form').find('input#input-pokemon-search').val() || null;
+                    respondToSearch(name, 'pokemon');
+                });
             })
             .catch(console.log);
     }
 
     function pokemon(name) {
         return Promise.all([data.getPokemon(name), templateLoader.get('pokemon-info')])
-            .then(([data, pokemonInfoTemplate]) => {
-                contentContainer.append(pokemonInfoTemplate(data));
+            .then(([pokemonData, pokemonInfoTemplate]) => {
+                contentContainer.append(pokemonInfoTemplate(pokemonData));
+                if (data.isLoggedIn()) {
+                    $('#btn-add-to-pokedex').removeClass('hidden');
+                }
             });
     }
 
     function items() {
         updateUI.navbar('btn-items');
+
         return Promise.all([templateLoader.get('items'), data.getItemNames()])
             .then(([template, itemNames]) => {
                 contentContainer.html(template());
                 $('#input-item-search').autocomplete({ source: itemNames });
+                contentContainer.on('click', '#btn-item-search', (ev) => {
+                    let name = $(ev.target).parents('form').find('input#input-item-search').val() || null;
+                    respondToSearch(name, 'item');
+                });
             })
             .catch(console.log);
     }
 
     function item(name) {
         return Promise.all([data.getItem(name), templateLoader.get('item-info')])
-            .then(([data, itemInfoTemplate]) => {
-                contentContainer.append(itemInfoTemplate(data));
+            .then(([itemData, itemInfoTemplate]) => {
+                contentContainer.append(itemInfoTemplate(itemData));
             });
+    }
+
+    function pokedex() {
+        updateUI.navbar('btn-pokedex');
+        contentContainer.html('');
+
+        // return Promise.all([data.getPokedex(), templateLoader.get('pokemon-info')])
+        //     .then(([pokedex, pokemonInfoTemplate]) => {
+        //         for (let pokemon of pokedex) {
+        //             contentContainer.append(pokemonInfoTemplate(pokemon));
+        //         }
+        // });
     }
 
     return {
@@ -172,6 +201,7 @@ let controllers = (() => {
         pokemon,
         items,
         item,
+        pokedex,
         respondToSearch,
         login,
         register,

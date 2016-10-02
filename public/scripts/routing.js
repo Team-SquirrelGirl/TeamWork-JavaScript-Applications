@@ -35,6 +35,9 @@ let router = (() => {
             .on('/items', () => {
                 controllers.items();
             })
+            .on('/pokedex', () => {
+                controllers.pokedex();
+            })
             .on('/home', () => {
                 controllers.home();
             })

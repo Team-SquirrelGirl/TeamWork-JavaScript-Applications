@@ -1,5 +1,5 @@
 /* globals $ */
-import { requester } from './requester.js';
+import { requester } from 'requester';
 
 let data = (() => {
     let names = {};
@@ -77,11 +77,16 @@ let data = (() => {
         return requester.getJSON(`http://pokeapi.co/api/v2/item/${name}/`);
     }
 
+    function getPokedex() {
+        // return requester.getJSON('api/pokedex/id');
+    }
+
     return {
         getPokemon,
         getItem,
         getPokemonNames,
         getItemNames,
+        getPokedex,
         login,
         register,
         logout,
