@@ -51,6 +51,8 @@ let controllers = (() => {
                 contentContainer.html(template);
             })
             .then(function () {
+                updateUI.navbar('user-login');
+
                 $('#btn-login').on('click', function () {
                     let user = {
                         username: $('#tb-username').val(),
@@ -101,7 +103,7 @@ let controllers = (() => {
     }
 
     function pokemons() {
-        updateUI.navbar('pokemons');
+        updateUI.navbar('btn-pokemons');
         return Promise.all([templateLoader.get('pokemons'), data.getPokemonNames()])
             .then(([template, pokemonNames]) => {
                 contentContainer.html(template());
@@ -127,7 +129,7 @@ let controllers = (() => {
     }
 
     function items() {
-        updateUI.navbar('items');
+        updateUI.navbar('btn-items');
         return Promise.all([templateLoader.get('items'), data.getItemNames()])
             .then(([template, itemNames]) => {
                 contentContainer.html(template());
