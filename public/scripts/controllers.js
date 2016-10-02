@@ -3,11 +3,47 @@
 import { templateLoader } from 'template-loader';
 import { updateUI } from 'updateUI';
 import { requester } from 'requester';
+import { data } from 'data';
 
 var handlebars = handlebars || Handlebars;
 
 let controllers = (() => {
     let contentContainer = $('#root #content');
+
+    function findNameFromData(name, type) {
+        return new Promise((resolve, reject) => {
+            let isFound = false,
+                namesToSearchFrom = data.names[type];
+
+            for (let i = 0, len = namesToSearchFrom.length; i < len; i += 1) {
+                if (name === namesToSearchFrom[i].toLowerCase()) {
+                    isFound = true;
+                }
+            }
+
+            resolve(isFound);
+        });
+    }
+
+    function respondToSearch(name, type, navigo) {
+        if (name !== null && name !== undefined && typeof name === 'string') {
+            name = name.replace(/\s+/g, '').toLowerCase();
+            if (name.length >= 3) {
+                findNameFromData(name, type)
+                    .then((isFound) => {
+                        if (isFound) {
+                            navigo.navigate(`/${type}s/${name}`);
+                        } else {
+                            updateUI.showMsg(`Invalid ${type} name!`, 'alert-danger');
+                        }
+                    });
+            } else {
+                updateUI.showMsg(`Invalid ${type} name!`, 'alert-danger');
+            }
+        } else {
+            updateUI.showMsg(`Invalid ${type} name!`, 'alert-danger');
+        }
+    }
 
     function login(user) {
         return requester.putJSON('/api/auth', user)
@@ -15,7 +51,7 @@ let controllers = (() => {
                 console.log(userData);
                 localStorage.setItem('username', userData.result.username);
                 localStorage.setItem('authKey', userData.result.authKey);
-            })
+            });
     }
 
     function register(user) {
@@ -77,13 +113,13 @@ let controllers = (() => {
             });
     }
 
-
     return {
         home,
         pokemons,
         pokemon,
         items,
         item,
+        respondToSearch,
         login,
         register,
         logout,
