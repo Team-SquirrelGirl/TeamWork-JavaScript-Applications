@@ -20,6 +20,31 @@
       "usernameToLower": "jamie",
       "id": "bd04b3b8-5586-47ad-bf8f-db6c531dbb73",
       "authKey": "bd04b3b8-5586-47ad-bf8f-db6c531dbb73erxSIAJyVOzIEIrpMFbanscO"
+    },
+    {
+      "username": "daniel",
+      "passHash": "83592796bc17705662dc9a750c8b6d0a4fd93396",
+      "usernameToLower": "daniel",
+      "id": "0bc9ec55-446b-4037-90b8-9ad40c7d7f5a"
+    },
+    {
+      "username": "1234",
+      "passHash": "7110eda4d09e062aa5e4a390b0a572ac0d2c0220",
+      "usernameToLower": "1234",
+      "id": "09401936-67ae-402e-a830-d9e026262b91"
+    },
+    {
+      "username": "proba",
+      "passHash": "9f47b814230f7481deb45506283214aa58e923f9",
+      "usernameToLower": "proba",
+      "id": "6eadef71-5af7-42f8-8cd4-1a7efd6becdb"
+    },
+    {
+      "username": "1111",
+      "passHash": "011c945f30ce2cbafc452f39840f025693339c42",
+      "usernameToLower": "1111",
+      "id": "35739d82-57c5-4fdf-9f34-7b409c50812f",
+      "authKey": "35739d82-57c5-4fdf-9f34-7b409c50812fFKeBhRkBjqSrzRuTSbqlDdgJ"
     }
   ],
   "pokemons": []

@@ -1,11 +1,9 @@
-/* globals $, Handlebars*/
+/* globals $, CryptoJS */
 
 import { templateLoader } from 'template-loader';
 import { updateUI } from 'updateUI';
 import { requester } from 'requester';
 import { data } from 'data';
-
-var handlebars = handlebars || Handlebars;
 
 let controllers = (() => {
     let contentContainer = $('#root #content');
@@ -54,9 +52,22 @@ let controllers = (() => {
                 updateUI.navbar('user-login');
 
                 $('#btn-login').on('click', function () {
+                    let username = $('#tb-username').val(),
+                        password = $('#tb-password').val();
+
+                    if (username.length < 4 || 20 < username.length) {
+                        updateUI.showMsg('Username should be between 4 and 20 symbols!', 'alert-danger');
+                        return;
+                    }
+
+                    if (password.length < 4 || 20 < password.length) {
+                        updateUI.showMsg('Password should be between 4 and 20 symbols!', 'alert-danger');
+                        return;
+                    }
+
                     let user = {
-                        username: $('#tb-username').val(),
-                        passHash: $('#tb-password').val()
+                        username,
+                        passHash: CryptoJS.SHA1(password).toString()
                     };
 
                     requester.putJSON('/api/auth', user)
@@ -79,9 +90,22 @@ let controllers = (() => {
                 });
 
                 $('#btn-register').on('click', function () {
+                    let username = $('#tb-username').val(),
+                        password = $('#tb-password').val();
+
+                    if (username.length < 4 || 20 < username.length) {
+                        updateUI.showMsg('Username should be between 4 and 20 symbols!', 'alert-danger');
+                        return;
+                    }
+
+                    if (password.length < 4 || 20 < password.length) {
+                        updateUI.showMsg('Password should be between 4 and 20 symbols!', 'alert-danger');
+                        return;
+                    }
+
                     let user = {
-                        username: $('#tb-username').val(),
-                        passHash: $('#tb-password').val()
+                        username,
+                        passHash: CryptoJS.SHA1(password).toString()
                     };
                     register(user);
                 });
@@ -89,6 +113,8 @@ let controllers = (() => {
     }
 
     function register(user) {
+        document.location = '#/home';
+        updateUI.showMsg('You have been registered successfully!', 'alert-success');
         return requester.postJSON('api/users', user);
     }
 
