@@ -1,4 +1,4 @@
-#root{
+#root {
     background: url("root-background.jpg") no-repeat;
     -webkit-background-size: cover;
     background-size: cover;
@@ -6,7 +6,12 @@
     border-radius: 20px;
     padding: 20px;
 }
-body{
+body {
     background: url('pokemon_background.png') no-repeat;
     background-size:cover;
- }
+}
+
+.items img, .pokemons img {
+    width: 200px;
+    height: 175px
+}
