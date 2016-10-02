@@ -9,6 +9,7 @@ SystemJS.config({
   'data': './scripts/data.js',
   'updateUI': './scripts/updateUI.js',
   'controllers': './scripts/controllers.js',
-  'fb-authentication': './scripts/fb-authentication.js'
+  'fb-authentication': './scripts/fb-authentication.js',
+  'requester' : './scripts/requester.js'
  }
 });

@@ -11,6 +11,12 @@ let router = (() => {
         navigo = new Navigo(null, true);
 
         navigo
+            .on('/logout',() =>{
+                controllers.logout();
+            })
+            .on('/login', ()=>{
+                controllers.login();
+            })
             .on('/pokemons/:name', (params) => {
                 controllers.pokemons();
                 controllers

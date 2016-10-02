@@ -1,4 +1,5 @@
 /* globals $ */
+import {data} from './data.js'
 
 let updateUI = (() => {
     'use strict';
@@ -18,15 +19,34 @@ let updateUI = (() => {
     }
 
     function navbar(activeButton) {
+        
         $navContainer.find('li').removeClass('active');
         if (activeButton) {
             $(`#btn-${activeButton}`).parents('li').addClass('active');
         }
     }
+    function navBarLogin() {
+        $('#login').removeClass('form-group');
+        $('#login').addClass('form-group hidden');
+
+        $('#logout').removeClass('form-group hidden');
+        $('#logout').addClass('form-group');
+        
+    }
+    function navBarLogout() {
+
+        $('#logout').removeClass('form-group');
+        $('#logout').addClass('form-group hidden');
+
+        $('#login').removeClass('form-group hidden');
+        $('#login').addClass('form-group');
+    }
 
     return {
         showMsg,
-        navbar
+        navbar,
+        navBarLogin,
+        navBarLogout
     };
 })();
 

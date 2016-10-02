@@ -1,0 +1,8 @@
+body{
+    background-image: url("http://idg.bg/test/pcw/2016/7/26/25798-army_of_pokemons.png");
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+#root{
+    background-image: url("http://assets.pokemon.com/static2/_ui/img/chrome/container_bg.png")
+}

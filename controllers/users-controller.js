@@ -17,7 +17,8 @@ module.exports = function(db) {
     }
 
     function get(req, res) {
-        let user = req.user;
+        let data = JSON.parse(req);
+        let user = data.user;
         if (!user) {
             return res.status(401)
                 .send("Unauthorized user!");
@@ -37,7 +38,8 @@ module.exports = function(db) {
     }
 
     function post(req, res) {
-        let user = req.body;
+        let data = JSON.parse(req);
+        let user = data;
         if (!user || typeof user.username !== "string" || typeof user.passHash !== "string") {
             return res.status(400)
                 .send("Invalid user");
@@ -63,7 +65,8 @@ module.exports = function(db) {
     }
 
     function put(req, res) {
-        let reqUser = req.body;
+        let data = req.body;
+        let reqUser = data;
         let user = db("users").find({
             usernameToLower: reqUser.username.toLowerCase()
         });
@@ -85,5 +88,5 @@ module.exports = function(db) {
         });
     }
 
-    return { get, post, put };
+    return {get, post, put };
 };

@@ -1,11 +1,99 @@
-/* globals $ */
+/* globals $ Handlebars*/
 
-import { templateLoader as templates } from 'template-loader';
-import { data } from 'data';
-import { updateUI } from 'updateUI';
+import {templateLoader as templates} from 'template-loader';
+import {data} from 'data';
+import {updateUI} from 'updateUI';
+import * as hb from "../bower_components/handlebars/handlebars.js";
+
+var handlebars = hb || Handlebars;
+
 
 let controllers = (() => {
     let contentContainer = $('#root #content');
+
+
+    function login() {
+        data.isLoggedIn()
+            .then(isLoggedIn => {
+                if (isLoggedIn) {
+                    //redirect to
+                    window.location = "#/home";
+                    updateUI.navBarLogin();
+                    return;
+                }
+
+                templates.getLogin()
+                    .then((templateHtml) => {
+                        let templateFunc = hb.compile(templateHtml);
+                        let html = templateFunc();
+                        $("#content").html(html);
+
+                        $("#btn-login").on("click", (ev) => {
+                            let user = {
+                                username: $("#tb-username").val(),
+                                passHash: $("#tb-password").val()
+                            };
+
+                            data.login(user)
+                                .then((respUser) => {
+                                    //123456q
+                                    updateUI.navBarLogin();
+                                    document.location = "#/home";
+                                });
+
+
+                            ev.preventDefault();
+                            return false;
+                        });
+
+                        $("#btn-register").on("click", (ev) => {
+                            let user = {
+                                username: $("#tb-username").val(),
+                                passHash: $("#tb-password").val()
+                            };
+
+                            data.register(user)
+                                .then((respUser) => {
+                                    console.log(respUser.result.username + 'logged in');
+                                    return data.login(respUser);
+                                })
+                                .then((respUser) => {
+
+                                    //123456q
+                                    //$(document.body).addClass("logged-in");
+                                    document.location = "#/home";
+                                });
+                            ev.preventDefault();
+                            return false;
+                        });
+
+                    })
+
+            })
+            .then($('#span-username').text(data.getCurrentUser()));
+    }
+
+    ///
+    //unction login(user) {
+    //   return new Promise((resolve,reject)=>{
+    //       data.login(user);
+    //   })
+    //       .then(
+    //           updateUI.navBarLogin()
+    //       )
+    //       .then(
+    //           data.isLoggedIn()
+    //               .then(function (result) {
+    //                   $('#span-username').text(result)
+    //               })
+    //       )
+    //
+    function logout() {
+        return new Promise((resolve, reject)=> {
+            resolve(data.logout());
+        })
+            .then(updateUI.navBarLogout())
+    }
 
     function findNameFromData(name, type) {
         return new Promise((resolve, reject) => {
@@ -54,7 +142,7 @@ let controllers = (() => {
         return Promise.all([templates.get('pokemons'), data.getPokemonNames()])
             .then(([template, pokemonNames]) => {
                 contentContainer.html(template());
-                $('#input-pokemon-search').autocomplete({ source: pokemonNames });
+                $('#input-pokemon-search').autocomplete({source: pokemonNames});
             })
             .catch(console.log);
     }
@@ -80,7 +168,7 @@ let controllers = (() => {
         return Promise.all([templates.get('items'), data.getItemNames()])
             .then(([template, itemNames]) => {
                 contentContainer.html(template());
-                $('#input-item-search').autocomplete({ source: itemNames });
+                $('#input-item-search').autocomplete({source: itemNames});
             })
             .catch(console.log);
     }
@@ -99,8 +187,10 @@ let controllers = (() => {
         pokemon,
         items,
         item,
-        respondToSearch
+        respondToSearch,
+        login,
+        logout
     };
 })();
 
-export { controllers };
+export {controllers};

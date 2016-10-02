@@ -1,7 +1,10 @@
-import { Validator } from './Validator.js';
+import {validator} from './Validator.js';
 
-export class Pokemon() {
-    constructor(id, name, types) {
+
+export class Pokemon
+{
+    constructor(id, name, types)
+    {
         validator.validateIfUndefined(id, 'Pokemon id');
         validator.validateIfNumber(id, 'Pokemon id');
         validator.validateString(name, 'Pokemon name');

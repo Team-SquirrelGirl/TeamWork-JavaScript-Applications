@@ -10,5 +10,9 @@
     "navigo": "^3.0.0",
     "systemjs": "^0.19.38",
     "systemjs-plugin-babel": "0.0.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
