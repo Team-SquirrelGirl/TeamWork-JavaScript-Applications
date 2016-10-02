@@ -1,0 +1,47 @@
+label{
+  color:#555555;
+}
+
+.content-area{
+
+}
+.actual-content-area{
+  position:absolute;left:10%;width:80%;
+  background: #FF8888;
+  border: 13px solid #FF8888;
+}
+
+.login-form{
+  position:absolute;left:30%;width:40%;margin-top:10%;
+  background: #CCEECC;
+  border: 23px solid #CCEECC;
+}
+.login-form-inner{
+   text-align: center;
+}
+
+.register-form{
+  position:absolute;left:25%;width:50%;margin-top:8%;
+  background: #CCCCFF;
+  border: 23px solid #CCCCFF;
+}
+.register-form-inner{
+  text-align: center;
+}
+
+.submit-button{
+  margin-top:5%;
+  margin-bottom: 2%;
+  width:45%;
+}
+
+.input-element{
+  margin-top: 3%;
+}
+
+.pokemon{
+  margin-top: 2%;
+  text-align: center;
+  background: #88AACC;
+  border:1px solid black;
+}

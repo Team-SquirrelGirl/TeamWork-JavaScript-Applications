@@ -1,56 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>JS Applications Teamwork</title>
-  <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="./bower_components/jquery-ui/themes/base/jquery-ui.css">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>JS Applications Teamwork</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styles/bootstrap.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="styles/main.css" media="screen" title="no title" charset="utf-8">
 
-  <script src="./bower_components/jquery/dist/jquery.js"></script>
-  <script src="./bower_components/jquery-ui/jquery-ui.js"></script>
-  <script src="./node_modules/navigo/lib/navigo.js"></script>
-  <script src="./node_modules/handlebars/dist/handlebars.js"></script>
-  <script src="./node_modules/systemjs/dist/system.js"></script>
-  <script src="./scripts/system-config.js"></script>
-  <script>
-    System.import('main');
-  </script>
-</head>
-<body>
-    <div id="root" class="container">
-      <header class="row">
-        <div class="row">
-          <h1 class="col-sm-9"><a href="#/home">ALL THE INFO FOR YOUR POKEMONS</a></h1>
+  </head>
+  <body>
+
+    <div id="loginNav" class="container">
+      <div id="nav-login-form" class="navbar-form navbar-right" action="login">
+        <div id="loginArea" class="form-group">
+          <button id="btn-fb" type="submit" class="btn btn-primary">Share</button>
+          <button id="openLogin" class="btn btn-default">Login</button>
         </div>
-        <nav class="navbar navbar-default navbar-collapse collapse">
-          <ul id="main-nav" class="nav navbar-nav">
-            <li><a href="#/pokemons" id="btn-pokemons" loaded="false">POKEMONS</a></li>
-            <li><a href="#/items" id="btn-items">ITEMS</a></li>
-          </ul>
-          <form id="nav-login-form" class="navbar-form navbar-right">
-            <div id="login" class="form-group">
-              <button id="btn-fb" type="submit" class="btn btn-primary">Share</button>
-              <button type="submit" class="btn btn-default"><a href="#/login">LOGIN</a> </button>
-            </div>
-            <div id="logout" class="form-group hidden">
-              Hello, <a href="#"><strong id="span-username"></strong></a>
-              <button id="btn-logout" type="submit" class="btn btn-default"><a href="#/logout">Logout</a></button>
-            </div>
-            <div id="register" class="form-group">
-              <button id="#btn-register" type="submit" class="btn btn-default">Register</button>
-            </div>
-          </form>
-        </nav>
-      </header>
-
-      <div id="content" class="row">
+        <div id="logoutArea" class="form-group hidden">
+          Hello,<strong id="displayUsername">Name</strong>
+          <button id="btn-logout" type="submit" class="btn btn-default"><a href="#/logout">Logout</a></button>
+        </div>
+        <div id="register" class="form-group">
+          <button id="openRegister" type="submit" class="btn btn-default">Register</button>
+        </div>
       </div>
-    </div>
+   </div>
 
-  <script id="alert-template" type="text/template">
-      <div class="alert col-lg-0" style="position: absolute; top: 10%; left: 45%;"></div>
-  </script>
-</body>
+   <div class="content-area">
+     <div class="login-form content" id="loginForm" style="display:none">
+         <form class="login-form-inner" action="login" method="post">
+             <label for="Username" class="col-lg-6 col-md-12 col-sm-12 input-element">Enter your username:</label>
+             <input type="text" name="Username" class="col-lg-6 col-md-12 col-sm-12 input-element" value="" placeholder="username..." required>
+             <label for="Password" class="col-lg-6 col-md-12 col-sm-12 input-element">Enter your password:</label>
+             <input type="password" name="Password" class="col-lg-6 col-md-12 col-sm-12 col-sm-12 input-element" value="" placeholder="password..." required>
+
+             <button type="Submit" name="submit" class="btn-default submit-button">Log in</button>
+             <a href="#" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">forgot password?</a>
+         </form>
+     </div>
+     <div class="register-form content" id="registerForm" style="display:none">
+         <form class="register-form-inner" action="register" method="post">
+           <label for="Username" class="col-lg-4 col-md-4 col-sm-4 input-element">Username:</label>
+           <input type="text" name="Username" class="col-lg-8 col-md-8 col-sm-8 input-element" value="" placeholder="username..." required>
+           <label for="Password" class="col-lg-4 col-md-4 col-sm-4 input-element">Password:</label>
+           <input type="password" name="Password" class="col-lg-8 col-md-8 col-sm-8 input-element" value="" placeholder="password..." required>
+           <label for="FirstName" class="col-lg-4 col-md-4 col-sm-4 input-element">First Name:</label>
+           <input type="text" name="FirstName" class="col-lg-8 col-md-8 col-sm-8 input-element" value="" placeholder="username..." required>
+           <label for="LastName" class="col-lg-4 col-md-4 col-sm-4 input-element">Last Name:</label>
+           <input type="text" name="LastName" class="col-lg-8 col-md-8 col-sm-8 input-element" value="" placeholder="username..." required>
+           <label for="Email" class="col-lg-4 col-md-4 col-sm-4 input-element">Email Address:</label>
+           <input type="email" name="Email" class="col-lg-8 col-md-8 col-sm-8 input-element" value="" placeholder="username..." required>
+
+
+           <button type="Submit" name="submit" class="btn-default submit-button">Register</button>
+         </form>
+     </div>
+
+     <div class="content actual-content-area" id="contentArea">
+       <div class="pokemons">
+
+         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pokemon">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" alt="Pokemon Image" />
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Name">Name:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Pikachu</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Type">Type:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Electric</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Height">Height:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">4</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Weight">Weight:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">6</p>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pokemon">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" alt="Pokemon Image" />
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Name">Name:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Pikachu</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Type">Type:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Electric</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Height">Height:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">4</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Weight">Weight:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">6</p>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pokemon">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" alt="Pokemon Image" />
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Name">Name:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Pikachu</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Type">Type:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Electric</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Height">Height:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">4</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Weight">Weight:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">6</p>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pokemon">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" alt="Pokemon Image" />
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Name">Name:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Pikachu</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Type">Type:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Electric</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Height">Height:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">4</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Weight">Weight:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">6</p>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pokemon">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" alt="Pokemon Image" />
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Name">Name:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Pikachu</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Type">Type:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Electric</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Height">Height:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">4</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Weight">Weight:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">6</p>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pokemon">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" alt="Pokemon Image" />
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Name">Name:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Pikachu</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Type">Type:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Electric</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Height">Height:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">4</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Weight">Weight:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">6</p>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pokemon">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" alt="Pokemon Image" />
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Name">Name:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Pikachu</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Type">Type:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Electric</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Height">Height:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">4</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Weight">Weight:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">6</p>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pokemon">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" alt="Pokemon Image" />
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Name">Name:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Pikachu</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Type">Type:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Electric</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Height">Height:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">4</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Weight">Weight:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">6</p>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 pokemon">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" alt="Pokemon Image" />
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Name">Name:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Pikachu</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Type">Type:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">Electric</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Height">Height:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">4</p>
+              <label class="col-lg-6 col-md-6 col-sm-6 col-xs-12" for="Weight">Weight:</label><p class="col-lg-6 col-md-6 col-sm-6 col-xs-12">6</p>
+         </div>
+
+       </div>
+     </div>
+
+     </div>
+   </div>
+
+
+     <script src="scripts/jquery-1.9.1.js" charset="utf-8"></script>
+     <script src="scripts/bootstrap.min.js" charset="utf-8"></script>
+     <script src="scripts/ui.js" charset="utf-8"></script>
+     <script src="scripts/uievents.js" charset="utf-8"></script>
+  </body>
 </html>
