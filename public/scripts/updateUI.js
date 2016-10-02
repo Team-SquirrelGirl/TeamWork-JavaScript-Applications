@@ -1,4 +1,5 @@
 /* globals $ */
+import {data} from './data.js'
 
 let updateUI = (() => {
     'use strict';
@@ -32,6 +33,10 @@ let updateUI = (() => {
         $('#logout').removeClass('form-group hidden');
         $('#logout').addClass('form-group');
 
+        $('#register').removeClass('from-group');
+        $('#register').addClass('from-group hidden');
+        $('#span-username').text(data.getCurrentUser());
+
     }
 
     function navBarLogout() {
@@ -41,6 +46,9 @@ let updateUI = (() => {
 
         $('#login').removeClass('form-group hidden');
         $('#login').addClass('form-group');
+
+        $('#register').removeClass('from-group hidden');
+        $('#register').addClass('from-group');
     }
 
     return {

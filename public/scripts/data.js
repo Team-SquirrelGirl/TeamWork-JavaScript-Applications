@@ -1,6 +1,6 @@
 /* globals $ */
 
-import { requester } from  'requester';
+import {requester} from  'requester';
 
 let data = (() => {
     let names = {};
@@ -41,15 +41,12 @@ let data = (() => {
     }
 
     function getCurrentUser() {
-        return Promise.resolve()
-            .then(() => {
-                return localStorage.getItem("username");
-            });
+        return localStorage.getItem("username");
     }
 
     function getPokemonNames() {
         if (names.pokemon) {
-             return Promise.resolve(names.pokemon);
+            return Promise.resolve(names.pokemon);
         }
 
         return new Promise((resolve, reject) => {
@@ -64,7 +61,7 @@ let data = (() => {
 
     function getItemNames() {
         if (names.item) {
-             return Promise.resolve(names.item);
+            return Promise.resolve(names.item);
         }
 
         return new Promise((resolve, reject) => {
@@ -99,4 +96,4 @@ let data = (() => {
     };
 })();
 
-export { data };
+export {data};

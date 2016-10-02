@@ -61,7 +61,6 @@ let controllers = (() => {
                         });
                     });
             })
-            .then($('#span-username').text(data.getCurrentUser()));
     }
 
     ///
@@ -80,6 +79,7 @@ let controllers = (() => {
     //       )
 
     function logout() {
+        console.log(data.getCurrentUser());
         return new Promise((resolve, reject) => {
             resolve(data.logout());
         })

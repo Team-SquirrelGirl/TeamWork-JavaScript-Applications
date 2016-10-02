@@ -134,7 +134,8 @@
       "username": "1111",
       "passHash": "1111",
       "usernameToLower": "1111",
-      "id": "b9a90c8e-3e42-4c05-af7f-e87d1753eedb"
+      "id": "b9a90c8e-3e42-4c05-af7f-e87d1753eedb",
+      "authKey": "b9a90c8e-3e42-4c05-af7f-e87d1753eedblIJGrvZXseuZjUFrytzTOqSU"
     },
     {
       "username": "111",

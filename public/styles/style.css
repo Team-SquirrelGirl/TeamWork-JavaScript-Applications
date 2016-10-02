@@ -1,0 +1,12 @@
+#root{
+    background: url("root-background.jpg") no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 20px;
+}
+body{
+    background: url('pokemon_background.png') no-repeat;
+    background-size:cover;
+ }
