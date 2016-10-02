@@ -4,6 +4,10 @@ module.exports = function(db) {
     const AUTH_KEY_LENGTH = 60,
         AUTH_KEY_CHARS = "qwertyuiopasdfghjklzxcvbnmWERTYUIOPASDFGHJKLZXCVBNM";
 
+    function validate(user) {
+
+    }
+
     function generateAuthKey(uniquePart) {
         let authKey = uniquePart,
             index;
@@ -17,47 +21,53 @@ module.exports = function(db) {
     }
 
     function get(req, res) {
-        let data = JSON.parse(req);
-        let user = data.user;
+        var user = req.user;
         if (!user) {
-            return res.status(401)
-                .send("Unauthorized user!");
+            res.status(401)
+                .json('Unauthorized user!');
+            return;
         }
-
-        let users = db("users")
-            .map(u => {
+        var users = db('users')
+            .map(function(user) {
                 return {
-                    username: u.username,
-                    id: u.id
+                    username: user.username,
+                    id: user.id
                 };
             });
 
-        return res.send({
+        res.json({
             result: users
         });
     }
 
-    function post(req, res) {
-        let data = JSON.parse(req);
-        let user = data;
-        if (!user || typeof user.username !== "string" || typeof user.passHash !== "string") {
-            return res.status(400)
-                .send("Invalid user");
-        }
 
-        let dbUser = db("users").find({
+    function post(req, res) {
+        var user = req.body;
+        if (!user || typeof user.username !== 'string' || typeof user.passHash !== 'string') {
+            res.status(400)
+                .json('Invalid user');
+            return;
+        }
+        var error = validate(user);
+
+        if (error) {
+            res.status(400)
+                .json(error.message);
+            return;
+        }
+        var dbUser = db('users').find({
             usernameToLower: user.username.toLowerCase()
         });
 
         if (dbUser) {
-            return res.status(400)
-                .send("Duplicated user");
+            res.status(400)
+                .json('Duplicated user');
+            return;
         }
         user.usernameToLower = user.username.toLowerCase();
-        db("users").insert(user);
-
-        return res.status(201)
-            .send({
+        db('users').insert(user);
+        res.status(201)
+            .json({
                 result: {
                     username: user.username
                 }
@@ -65,22 +75,21 @@ module.exports = function(db) {
     }
 
     function put(req, res) {
-        let data = req.body;
-        let reqUser = data;
-        let user = db("users").find({
+        var reqUser = req.body;
+        var user = db('users').find({
             usernameToLower: reqUser.username.toLowerCase()
         });
         if (!user || user.passHash !== reqUser.passHash) {
-            return res.status(404)
-                .send("Invalid username or password");
+            res.status(404)
+                .json('Invalid username or password');
+            return;
         }
-
         if (!user.authKey) {
             user.authKey = generateAuthKey(user.id);
             db.save();
         }
 
-        return res.send({
+        res.json({
             result: {
                 username: user.username,
                 authKey: user.authKey

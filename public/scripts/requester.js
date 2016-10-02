@@ -9,7 +9,7 @@ let requester = {
                 success: function(response) {
                     resolve(response);
                 },
-                fail: function (response) {
+                fail: function(response) {
                     reject(response);
                 }
             });
@@ -27,13 +27,8 @@ let requester = {
                 method: "PUT",
                 contentType: "application/json",
                 data: JSON.stringify(body),
-                complete: function(response) {
-                    console.log(response);
+                success(response) {
                     resolve(response);
-                },
-                fail: function (response) {
-                    console.log(response);
-                    reject(response);
                 }
             });
         });
@@ -44,18 +39,18 @@ let requester = {
     postJSON(url, body, options = {}) {
         let promise = new Promise((resolve, reject) => {
             var headers = options.headers || {};
+            console.log(body);
             $.ajax({
                 url,
                 headers,
                 method: "POST",
                 contentType: "application/json",
                 data: JSON.stringify(body),
-                complete: function(response) {
+                success(response) {
                     resolve(response);
                 }
             });
         });
-
         return promise;
     },
 
