@@ -66,6 +66,10 @@ let router = (() => {
             })
             .on('/home', () => {
                 controllers.home();
+                if (localStorage.length > 0) {
+                    $('#username-value').html(localStorage.getItem('username')).css({ "color": "red", "text-decoration": "underline" })
+                    $('#user-logout').html('Logout');
+                }
             })
             .on('/login', () => {
                 controllers.login();
