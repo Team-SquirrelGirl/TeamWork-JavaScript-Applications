@@ -45,12 +45,40 @@ let controllers = (() => {
         }
     }
 
-    function login(user) {
-        return requester.putJSON('/api/auth', user)
-            .then((userData) => {
-                console.log(userData);
-                localStorage.setItem('username', userData.result.username);
-                localStorage.setItem('authKey', userData.result.authKey);
+    function login() {
+        return Promise.all([templateLoader.get('login')])
+            .then(([template]) => {
+                contentContainer.html(template);
+            })
+            .then(function () {
+                $('#btn-login').on('click', function () {
+                    let user = {
+                        username: $('#tb-username').val(),
+                        passHash: $('#tb-password').val()
+                    };
+                    console.log(user);
+
+                    requester.putJSON('/api/auth', user)
+                        .then((userData) => {
+                            console.log(userData);
+                            localStorage.setItem('username', userData.result.username);
+                            localStorage.setItem('authKey', userData.result.authKey);
+                        });
+
+                    $('#username-value').html('Hello, ' + user.username);
+                    $('#user-login').parent('li').addClass('hidden');
+                    $('#user-logout').parent('li').removeClass('hidden');
+                    document.location = '#/home';
+                });
+
+                $('#btn-register').on('click', function () {
+                    let user = {
+                        username: $('#tb-username').val(),
+                        passHash: $('#tb-password').val()
+                    };
+                    console.log(user);
+                    controllers.register(user);
+                });
             });
     }
 
@@ -59,6 +87,9 @@ let controllers = (() => {
     }
 
     function logout() {
+        $('#username-value').html('');
+        $('#user-logout').parent('li').addClass('hidden');
+        $('#user-login').parent('li').removeClass('hidden');
         localStorage.clear();
     }
 

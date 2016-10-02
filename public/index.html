@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./bower_components/jquery-ui/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="./styles/style.css"/>
-    <link rel="stylesheet" href="./styles/main.css"/>
 
     <script src="./bower_components/jquery/dist/jquery.js"></script>
     <script src="./bower_components/jquery-ui/jquery-ui.js"></script>
@@ -31,21 +30,14 @@
             <li><a href="#/home" id="btn-home" loaded="false">Home</a></li>
             <li><a href="#/pokemons" id="btn-pokemons" loaded="false">Pokemons</a></li>
             <li><a href="#/items" id="btn-items">Items</a></li>
-            <li>
-            <a href="#/login">Login</a>
-          </li>
-          <li>
-            <a id="user-logout" href="#/logout"></a>
-          </li>
-          <li>
-            <a id="username-value"></a>
-          </li>
+            <li><a id="user-login" href="#/login">Login</a></li>
+            <li class="hidden"><a id="user-logout" href="#/logout">Logout</a></li>
+            <li><a id="username-value"></a></li>
           </ul>
           <form id="nav-login-form" class="navbar-form navbar-right">
             <div id="login" class="form-group">
               <button id="btn-fb" type="submit" class="btn btn-primary">Share</button>
             </div>
-
           </form>
         </nav>
     </header>
