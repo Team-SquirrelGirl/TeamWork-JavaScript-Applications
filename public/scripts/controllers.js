@@ -46,8 +46,8 @@ let controllers = (() => {
     }
 
     function login() {
-        return Promise.all([templateLoader.get('login')])
-            .then(([template]) => {
+        return Promise.resolve(templateLoader.get('login'))
+            .then((template) => {
                 contentContainer.html(template);
             })
             .then(function () {
@@ -58,19 +58,24 @@ let controllers = (() => {
                         username: $('#tb-username').val(),
                         passHash: $('#tb-password').val()
                     };
-                    console.log(user);
 
                     requester.putJSON('/api/auth', user)
+                        .catch((error) => {
+                            if (error.status === 404) {
+                                updateUI.showMsg('Incorrect username or password!', 'alert-danger');
+                            }
+                        })
                         .then((userData) => {
-                            console.log(userData);
-                            localStorage.setItem('username', userData.result.username);
-                            localStorage.setItem('authKey', userData.result.authKey);
-                        });
+                            if (userData) {
+                                localStorage.setItem('username', userData.result.username);
+                                localStorage.setItem('authKey', userData.result.authKey);
 
-                    $('#username-value').html('Hello, ' + user.username);
-                    $('#user-login').parent('li').addClass('hidden');
-                    $('#user-logout').parent('li').removeClass('hidden');
-                    document.location = '#/home';
+                                $('#username-value').html('Hello, ' + user.username);
+                                $('#user-login').parent('li').addClass('hidden');
+                                $('#user-logout').parent('li').removeClass('hidden');
+                                document.location = '#/home';
+                            }
+                        });
                 });
 
                 $('#btn-register').on('click', function () {
@@ -78,14 +83,13 @@ let controllers = (() => {
                         username: $('#tb-username').val(),
                         passHash: $('#tb-password').val()
                     };
-                    console.log(user);
-                    controllers.register(user);
+                    register(user);
                 });
             });
     }
 
     function register(user) {
-        return requester.postJSON('api/users', user)
+        return requester.postJSON('api/users', user);
     }
 
     function logout() {

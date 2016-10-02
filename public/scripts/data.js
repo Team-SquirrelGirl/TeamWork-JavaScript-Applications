@@ -32,10 +32,7 @@ let data = (() => {
     }
 
     function isLoggedIn() {
-        return Promise.resolve()
-            .then(() => {
-                return !!localStorage.getItem("username");
-            });
+            return !!localStorage.getItem("username");
     }
 
     function getCurrentUser() {
@@ -78,13 +75,6 @@ let data = (() => {
 
     function getItem(name) {
         return requester.getJSON(`http://pokeapi.co/api/v2/item/${name}/`);
-    }
-
-    function isLoggedIn() {
-        return Promise.resolve()
-            .then(() => {
-                return !!localStorage.getItem("username");
-            });
     }
 
     return {

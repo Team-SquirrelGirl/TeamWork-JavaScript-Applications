@@ -4,10 +4,6 @@ module.exports = function(db) {
     const AUTH_KEY_LENGTH = 60,
         AUTH_KEY_CHARS = "qwertyuiopasdfghjklzxcvbnmWERTYUIOPASDFGHJKLZXCVBNM";
 
-    function validate(user) {
-
-    }
-
     function generateAuthKey(uniquePart) {
         let authKey = uniquePart,
             index;
@@ -48,13 +44,7 @@ module.exports = function(db) {
                 .json('Invalid user');
             return;
         }
-        var error = validate(user);
 
-        if (error) {
-            res.status(400)
-                .json(error.message);
-            return;
-        }
         var dbUser = db('users').find({
             usernameToLower: user.username.toLowerCase()
         });
@@ -64,8 +54,10 @@ module.exports = function(db) {
                 .json('Duplicated user');
             return;
         }
+
         user.usernameToLower = user.username.toLowerCase();
         db('users').insert(user);
+
         res.status(201)
             .json({
                 result: {
@@ -97,5 +89,5 @@ module.exports = function(db) {
         });
     }
 
-    return {get, post, put };
+    return { get, post, put };
 };
