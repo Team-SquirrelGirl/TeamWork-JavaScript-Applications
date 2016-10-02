@@ -40,10 +40,22 @@ li.#username-value{
 .input-element{
   margin-top: 3%;
 }
-
+.pokemon-stats{
+  display: inline-block;
+}
 .pokemon{
+  display: inline-block;
   margin-top: 2%;
   text-align: center;
-  background: #88AACC;
   border:1px solid black;
+}
+.pokemon-name{
+  display: inline-block;
+  margin-left: 50px;
+  margin-bottom: 35px;
+  text-align: center;
+  font-size: 30px;
+}
+.pokemon-name:first-letter {
+    text-transform: uppercase;
 }
