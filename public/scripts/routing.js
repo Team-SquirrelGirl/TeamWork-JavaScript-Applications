@@ -13,7 +13,7 @@ let router = (() => {
         navigo = new Navigo(null, true);
 
         navigo
-            .on('#/logout', () => {
+            .on('/logout', () => {
                 controllers.logout();
                 $('#username-value').html('');
                 document.location = "#/home";
