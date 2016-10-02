@@ -24,7 +24,15 @@ let controllers = (() => {
     }
 
     function logout() {
+<<<<<<< HEAD
         localStorage.clear();
+=======
+        console.log(data.getCurrentUser());
+        return new Promise((resolve, reject) => {
+            resolve(data.logout());
+        })
+            .then(updateUI.navBarLogout());
+>>>>>>> bb92c3ac4706b4c614fd74ae4be2b4493eefebfa
     }
 
 
