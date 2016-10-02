@@ -203,11 +203,11 @@
       "authKey": "80944f4d-f8aa-4f83-8f46-03a59f881582pGcuCfioBoOFkNpqrLlxqEUR"
     },
     {
-      "username": "daniel",
-      "passHash": "123",
-      "usernameToLower": "daniel",
-      "id": "c5dae075-b27d-4b16-8863-79393c458234",
-      "authKey": "c5dae075-b27d-4b16-8863-79393c458234guWnONxAzCtdbvAVzmkIKixO"
+      "username": "asdf123",
+      "passHash": "asdf123",
+      "usernameToLower": "asdf123",
+      "id": "061980a3-606f-4d5c-8067-2f5153551207",
+      "authKey": "061980a3-606f-4d5c-8067-2f5153551207vbdjrSRvEOcvulPGdgverASc"
     }
   ],
   "pokemons": [

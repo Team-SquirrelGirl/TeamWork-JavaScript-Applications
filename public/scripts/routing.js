@@ -16,13 +16,13 @@ let router = (() => {
             .on('/logout', () => {
                 controllers.logout();
                 $('#username-value').html('');
+                $('#user-logout').html('');
                 document.location = "#/home";
             })
             .on('/login', () => {
                 return Promise.all([templateLoader.get('login')])
                     .then(([template]) => {
                         $contentContainer.html(template);
-                        console.log('vliza');
                     })
                     .then(function() {
                         $('#btn-login').on('click', function() {
@@ -32,7 +32,8 @@ let router = (() => {
                             }
                             console.log(user);
                             controllers.login(user);
-                            $('#username-value').html(user.username);
+                            $('#username-value').html(user.username).css({ "color": "red", "text-decoration": "underline" })
+                            $('#user-logout').html('Logout');
                             document.location = "#/home";
                         });
                         $('#btn-register').on('click', function() {
