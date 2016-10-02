@@ -1,16 +1,13 @@
-/* globals $ Handlebars*/
+/* globals $, Handlebars*/
 
-import {templateLoader as templates} from 'template-loader';
-import {data} from 'data';
-import {updateUI} from 'updateUI';
-import * as hb from "../bower_components/handlebars/handlebars.js";
+import { templateLoader as templates } from 'template-loader';
+import { data } from 'data';
+import { updateUI } from 'updateUI';
 
-var handlebars = hb || Handlebars;
-
+var handlebars = handlebars || Handlebars;
 
 let controllers = (() => {
     let contentContainer = $('#root #content');
-
 
     function login() {
         data.isLoggedIn()
@@ -22,11 +19,9 @@ let controllers = (() => {
                     return;
                 }
 
-                templates.getLogin()
-                    .then((templateHtml) => {
-                        let templateFunc = hb.compile(templateHtml);
-                        let html = templateFunc();
-                        $("#content").html(html);
+                Promise.resolve(templates.get('login'))
+                    .then((template) => {
+                        contentContainer.html(template());
 
                         $("#btn-login").on("click", (ev) => {
                             let user = {
@@ -40,7 +35,6 @@ let controllers = (() => {
                                     updateUI.navBarLogin();
                                     document.location = "#/home";
                                 });
-
 
                             ev.preventDefault();
                             return false;
@@ -58,7 +52,6 @@ let controllers = (() => {
                                     return data.login(respUser);
                                 })
                                 .then((respUser) => {
-
                                     //123456q
                                     //$(document.body).addClass("logged-in");
                                     document.location = "#/home";
@@ -66,9 +59,7 @@ let controllers = (() => {
                             ev.preventDefault();
                             return false;
                         });
-
-                    })
-
+                    });
             })
             .then($('#span-username').text(data.getCurrentUser()));
     }
@@ -87,12 +78,12 @@ let controllers = (() => {
     //                   $('#span-username').text(result)
     //               })
     //       )
-    //
+
     function logout() {
-        return new Promise((resolve, reject)=> {
+        return new Promise((resolve, reject) => {
             resolve(data.logout());
         })
-            .then(updateUI.navBarLogout())
+            .then(updateUI.navBarLogout());
     }
 
     function findNameFromData(name, type) {

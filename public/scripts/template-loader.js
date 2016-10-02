@@ -1,42 +1,25 @@
-import * as $ from "../bower_components/jquery/dist/jquery.js";
-import * as hb from "../bower_components/handlebars/handlebars.js";
-import {requester} from "./requester.js";
+/* globals Handlebars */
 
-
-var handlebars = hb || Handlebars;
+import { requester } from 'requester';
 
 const templateLoader = (() => {
     'use strict';
 
+    let handlebars = handlebars || Handlebars;
     const cache = {};
 
     function get(templateName) {
         return new Promise((resolve, reject) => {
-
-            $.get(`/scripts/templates/${templateName}.handlebars`)
-                .done((data) => {
-                    let template = hb.compile(data);
+            requester.get(`/scripts/templates/${templateName}.handlebars`)
+                .then((data) => {
+                    let template = handlebars.compile(data);
                     cache[templateName] = template;
                     resolve(template);
-                })
-                .fail(reject);
-
-        });
-    }
-    function getLogin() {
-        return new Promise((resolve, reject) => {
-
-            $.get(`/scripts/templates/login.handlebars`)
-                .done((data) => {
-                    resolve(data);
-                })
-                .fail(reject);
-
+                });
         });
     }
 
-    return {get,
-            getLogin};
+    return { get };
 })();
 
-export {templateLoader};
+export { templateLoader };

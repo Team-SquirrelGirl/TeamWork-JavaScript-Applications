@@ -1,5 +1,4 @@
-import * as $ from "../bower_components/jquery/dist/jquery.js";
-/* globals $ Promise */
+/* globals $ */
 
 let requester = {
     get(url) {
@@ -9,36 +8,42 @@ let requester = {
                 method: "GET",
                 success: function(response) {
                     resolve(response);
+                },
+                fail: function (response) {
+                    reject(response);
                 }
             });
         });
+
         return promise;
     },
+
     putJSON(url, body, options = {}) {
         let promise = new Promise((resolve, reject) => {
-            var data = JSON.stringify(body);
             var headers = options.headers || {};
             $.ajax({
                 url,
                 headers,
                 method: "PUT",
                 contentType: "application/json",
-                data: data,
+                data: JSON.stringify(body),
                 complete: function(response) {
                     console.log(response);
                     resolve(response);
                 },
                 fail: function (response) {
-                    console.log(response)
+                    console.log(response);
+                    reject(response);
                 }
             });
         });
+
         return promise;
     },
+
     postJSON(url, body, options = {}) {
         let promise = new Promise((resolve, reject) => {
             var headers = options.headers || {};
-
             $.ajax({
                 url,
                 headers,
@@ -50,20 +55,19 @@ let requester = {
                 }
             });
         });
+
         return promise;
     },
+
     getJSON(url) {
         let promise = new Promise((resolve, reject) => {
-            $.ajax({
-                url,
-                method: "GET",
-                contentType: "application/json",
-                complete: function(response) {
-                    resolve(response);
-                }
-            });
+            $.getJSON(url)
+                .done(resolve)
+                .fail(reject);
         });
+
         return promise;
     }
 };
-export {requester}
+
+export { requester };
