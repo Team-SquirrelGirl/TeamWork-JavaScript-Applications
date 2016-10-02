@@ -114,7 +114,6 @@ let controllers = (() => {
     }
 
     function register(user) {
-        document.location = '#/home';
         updateUI.showMsg('You have been registered successfully!', 'alert-success');
         return requester.postJSON('api/users', user);
     }
