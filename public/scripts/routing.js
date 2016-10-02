@@ -62,6 +62,9 @@ let router = (() => {
             .on('/home', () => {
                 controllers.home();
             })
+            .on('/login', () => {
+                controllers.login();
+            })
             .on(() => {
                 navigo.navigate('/home');
             })

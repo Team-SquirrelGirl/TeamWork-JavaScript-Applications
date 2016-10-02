@@ -1,7 +1,6 @@
 {
   "users": [
     {
-<<<<<<< HEAD
       "username": "varvar",
       "passHash": "varvar",
       "usernameToLower": "varvar",
@@ -13,8 +12,7 @@
       "passHash": "123456",
       "usernameToLower": "tonyn",
       "id": "54ee4a59-8e5f-4e5e-a67e-8f8bf0b43120",
-      "authKey": "54ee4a59-8e5f-4e5e-a67e-8f8bf0b43120RSNFIpDiVuJJrSZoDLklnCAj"
-=======
+      "authKey": "54ee4a59-8e5f-4e5e-a67e-8f8bf0b43120RSNFIpDiVuJJrSZoDLklnCAj",
       "username": "Thomas",
       "passHash": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "usernameToLower": "thomas",

@@ -122,6 +122,62 @@ let controllers = (() => {
             });
     }
 
+    function login() {
+        data.isLoggedIn()
+            .then(isLoggedIn => {
+                if (isLoggedIn) {
+                    //redirect to
+                    window.location = "#/home";
+                    return;
+                }
+
+                templates.get("login")
+                    .then((templateHtml) => {
+
+                        let templateFunc = Handlebars.compile(templateHtml);
+                        let html = templateFunc();
+                        $("#container").html(html);
+
+                        $("#btn-login").on("click", (ev) => {
+                            let user = {
+                                username: 'John', //$("#tb-username").val(),
+                                passHash: '123456q' //$("#tb-password").val()
+                            };
+
+                            data.login(user)
+                                .then((respUser) => {
+                                    //123456q
+                                    $(document.body).addClass("logged-in");
+                                    document.location = "#/home";
+                                });;
+
+                            ev.preventDefault();
+                            return false;
+                        });
+
+                        $("#btn-register").on("click", (ev) => {
+                            let user = {
+                                username: $("#tb-username").val(),
+                                passHash: $("#tb-password").val()
+                            };
+
+                            data.register(user)
+                                .then((respUser) => {
+                                    return data.login(user);
+                                })
+                                .then((respUser) => {
+                                    //123456q
+                                    $(document.body).addClass("logged-in");
+                                    document.location = "#/home";
+                                });
+                            ev.preventDefault();
+                            return false;
+                        });
+
+                    });
+            });
+    }
+
     return {
         home,
         pokemons,
@@ -129,9 +185,13 @@ let controllers = (() => {
         items,
         item,
         respondToSearch,
+<<<<<<< Updated upstream
         login,
         register,
         logout
+=======
+        login
+>>>>>>> Stashed changes
     };
 })();
 

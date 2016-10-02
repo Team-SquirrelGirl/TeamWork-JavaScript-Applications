@@ -1,10 +1,16 @@
+<<<<<<< Updated upstream
 /* globals $ */
 
 import {requester} from  'requester';
 
+=======
+import { requester } from './requester.js';
+>>>>>>> Stashed changes
 let data = (() => {
+
     let names = {};
 
+<<<<<<< Updated upstream
     const HTTP_HEADER_KEY = "x-auth-key",
         KEY_STORAGE_USERNAME = "username",
         KEY_STORAGE_AUTH_KEY = "authKey";
@@ -42,6 +48,23 @@ let data = (() => {
 
     function getCurrentUser() {
         return localStorage.getItem("username");
+=======
+    function putJSON(url, body, options = {}) {
+        let promise = new Promise((resolve, reject) => {
+            var headers = options.headers || {};
+            $.ajax({
+                url,
+                headers,
+                method: "PUT",
+                contentType: "application/json",
+                data: JSON.stringify(body),
+                success(response) {
+                    resolve(response);
+                }
+            });
+        });
+        return promise;
+>>>>>>> Stashed changes
     }
 
     function getPokemonNames() {
@@ -82,11 +105,39 @@ let data = (() => {
         return requester.getJSON(`http://pokeapi.co/api/v2/item/${name}/`);
     }
 
+    function login(user) {
+        return putJSON("/api/auth", user)
+            .then(respUser => {
+                console.log(respUser);
+                localStorage.setItem("username", respUser.result.username);
+                localStorage.setItem("authKey", respUser.result.authKey);
+            });
+    }
+
+    function register(user) {
+        return requester.postJSON("/api/users", user);
+    }
+
+    function logout() {
+        return Promise.resolve()
+            .then(() => {
+                localStorage.removeItem("username");
+                localStorage.removeItem("authKey");
+            });
+    }
+
+    function isLoggedIn() {
+        return Promise.resolve()
+            .then(() => {
+                return !!localStorage.getItem("username");
+            });
+    }
     return {
         getPokemon,
         getItem,
         getPokemonNames,
         getItemNames,
+<<<<<<< Updated upstream
         login,
         register,
         logout,
@@ -97,3 +148,14 @@ let data = (() => {
 })();
 
 export {data};
+=======
+        names,
+        isLoggedIn,
+        logout,
+        register,
+        login
+    };
+})();
+
+export { data };
+>>>>>>> Stashed changes
