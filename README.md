@@ -4,7 +4,10 @@
 ## PokeInfo is a SPA application where you can find your favourite pokemons.
 
 ## Team - "Squirrel Girl" TeamWork
+ [Description](https://github.com/TelerikAcademy/JavaScript-Applications/blob/master/Teamwork/README.md)
+
  Telerik Academy by Progress
+
  JavaScript Applications Season 2016
 
 ##  How to start the application:
@@ -20,8 +23,6 @@
 - Navigate one directory back (run `cd ../`) in the CMD/Terminal
 - Run `npm start` and you should see a message like: `Server is running at http://localhost:3333`
 - Now you can open the application by browsing to `http://localhost:3333/`
-
-[Description](https://github.com/TelerikAcademy/JavaScript-Applications/blob/master/Teamwork/README.md)
 
 # Team - "Squirrel Girl" Members (Alphabetically)
 
