@@ -21,8 +21,8 @@ app.post("/api/users", usersController.post);
 app.put("/api/auth", usersController.put);
 
 // My pokemons
-let myPokemonsController = require("./controllers/my-pokemons-controller")(db);
-app.get("/api/my-pokemons", myPokemonsController.get);
+// let myPokemonsController = require("./controllers/my-pokemons-controller")(db);
+// app.get("/api/my-pokemons", myPokemonsController.get);
 
 let port = 3333;
 app.listen(port, () => console.log(`Server is running at http://localhost:${port}`));
