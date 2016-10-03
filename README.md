@@ -3,6 +3,10 @@
 
 ## PokeInfo is a SPA application where you can find your favourite pokemons.
 
+## Team - "Squirrel Girl" TeamWork
+ Telerik Academy by Progress
+ JavaScript Applications Season 2016
+
 ##  How to start the application:
 - Open CMD/Terminal and navigate to the checked-out repository with the application
 - Run `npm install` in the CMD/Terminal
