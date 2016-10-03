@@ -12,9 +12,10 @@ $(() => {
     if (isUserLogged) {
         let username = data.getCurrentUser();
 
+        $('#username-value').parent('li').removeClass('hidden');
         $('#username-value').html('Hello, ' + username);
-        $('#user-login').parent('li').addClass('hidden');
-        $('#btn-pokedex').parent('li').removeClass('hidden');
+        $('#nav-btn-login').addClass('hidden');
+        $('#nav-btn-pokedex').removeClass('hidden');
         $('#user-logout').parent('li').removeClass('hidden');
     }
 });

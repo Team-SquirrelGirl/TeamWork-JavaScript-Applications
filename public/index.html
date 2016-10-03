@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>PokeInfo</title>
-    <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./bower_components/jquery-ui/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="./styles/style.css"/>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
     <script src="./bower_components/jquery/dist/jquery.js"></script>
     <script src="./bower_components/jquery-ui/jquery-ui.js"></script>
@@ -20,31 +22,63 @@
         System.import('main');
     </script>
 </head>
+
 <body>
-<div id="root" class="container">
-    <header class="row">
-        <div class="row">
-            <h1 class="col-sm-9"><a href="#/home">ALL THE INFO FOR YOUR POKEMONS</a></h1>
+    <div class="background-image"></div>
+    <div id="root" class="container">
+        <header class="row">
+            <div class="row">
+                <h1 class="col-sm-9"><a href="#/home">ALL THE INFO FOR YOUR POKEMONS</a></h1>
+            </div>
+            <nav class="navbar navbar-default navbar-collapse collapse">
+                <ul id="main-nav" class="nav navbar-nav">
+                    <li id="nav-btn-home">
+                        <div class="nav-btn-container">
+                            <img src="http://www.cbi.org.uk/commercial-behaviours/assets//icon_home.png" id="nav-btn-home-logo">
+                            <a href="#/home" id="btn-home" loaded="false">Home</a>
+                        </div>
+                    </li>
+                    <li id="nav-btn-pokemons">
+                        <div class="nav-btn-container">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG" id="nav-btn-pokemons-logo">
+                            <a href="#/pokemons" id="btn-pokemons" loaded="false">Pokemons</a>
+                        </div>
+                    </li>
+                    <li id="nav-btn-items">
+                        <div class="nav-btn-container">
+                            <img src="https://lh3.googleusercontent.com/X-3LHIO23WcOTC98VlFlupHN5UjOOl1OXCtLxWeXBXrMmJuE30whLlqXhZSquFlmiw8=w300" id="nav-btn-items-logo">
+                            <a href="#/items" id="btn-items">Items</a>
+                        </div>
+                    </li>
+                    <li id="nav-btn-pokedex" class="hidden">
+                        <div class="nav-btn-container">
+                            <img src="http://orig05.deviantart.net/067c/f/2013/140/8/c/pokedex_of_anomalies_meme_by_jotyler-d65xqm7.jpg" id="nav-btn-login-logo">
+                            <a id="user-login" href="#/pokedex">Pokedex</a>
+                        </div>
+                    </li>
+                    <li id="nav-btn-login">
+                        <div class="nav-btn-container">
+                            <img src="http://orig03.deviantart.net/e817/f/2013/095/0/e/ash_hat_by_thafake-d60jtlj.png" id="nav-btn-login-logo">
+                            <a id="user-login" href="#/login">Login</a>
+                        </div>
+                    </li>
+                    <li class="hidden">
+                        <a id="user-logout" href="#/logout">Logout</a>
+                    </li>
+                    <li class="hidden">
+                        <a id="username-value"></a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <div id="content" class="row">
         </div>
-        <nav class="navbar navbar-default navbar-collapse collapse">
-          <ul id="main-nav" class="nav navbar-nav">
-            <li><a href="#/home" id="btn-home" loaded="false">Home</a></li>
-            <li><a href="#/pokemons" id="btn-pokemons" loaded="false">Pokemons</a></li>
-            <li><a href="#/items" id="btn-items">Items</a></li>
-            <li class="hidden"><a href="#/pokedex" id="btn-pokedex">Pokedex</a></li>
-            <li><a id="user-login" href="#/login">Login</a></li>
-            <li class="hidden"><a id="user-logout" href="#/logout">Logout</a></li>
-            <li><a id="username-value"></a></li>
-          </ul>
-        </nav>
-    </header>
-
-    <div id="content" class="row">
     </div>
-</div>
 
-<script id="alert-template" type="text/template">
+    <script id="alert-template" type="text/template">
     <div class="alert col-lg-0" style="position: absolute; top: 10%; left: 45%;"></div>
 </script>
 </body>
+
 </html>

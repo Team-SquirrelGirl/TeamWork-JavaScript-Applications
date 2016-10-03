@@ -81,10 +81,11 @@ let controllers = (() => {
                                 localStorage.setItem('username', userData.result.username);
                                 localStorage.setItem('authKey', userData.result.authKey);
 
-                                $('#username-value').html('Hello, ' + user.username);
-                                $('#user-login').parent('li').addClass('hidden');
+                                $('#username-value').parent('li').removeClass('hidden');
+                                $('#username-value').html('Hello, ' + username);
+                                $('#nav-btn-login').addClass('hidden');
+                                $('#nav-btn-pokedex').removeClass('hidden');
                                 $('#user-logout').parent('li').removeClass('hidden');
-                                $('#btn-pokedex').parent('li').removeClass('hidden');
                                 document.location = '#/home';
                             }
                         });
@@ -119,10 +120,11 @@ let controllers = (() => {
     }
 
     function logout() {
+        $('#username-value').parent('li').addClass('hidden');
         $('#username-value').html('');
         $('#user-logout').parent('li').addClass('hidden');
-        $('#btn-pokedex').parent('li').addClass('hidden');
-        $('#user-login').parent('li').removeClass('hidden');
+        $('#nav-btn-pokedex').addClass('hidden');
+        $('#nav-btn-login').removeClass('hidden');
         localStorage.clear();
     }
 
